@@ -3,6 +3,9 @@ package practica_individual;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.Comparator;
 
 public class Ejercicio_dos {
 	
@@ -96,6 +99,15 @@ public class Ejercicio_dos {
 				i++;
 			}		
 		}		
+		return res;
+	}
+	
+	public static <T extends Comparable<T>> List<T> ordenaListaFuncional(List<T> l1,List<T> l2)
+	{
+		List<T> res = new ArrayList<>();
+		
+		Stream.iterate(0, x->x+1).limit(l1.size()-1).filter(x-> res.get(x).compareTo(res.get(x+1)) > 0);
+		
 		return res;
 	}
 }
