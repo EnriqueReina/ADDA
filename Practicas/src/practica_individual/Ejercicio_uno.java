@@ -44,6 +44,11 @@ public class Ejercicio_uno {
 	        return count;
 	    }
 	    
+	    public static Integer cuentaCarcateresFuncional(String s)
+	    {
+	    	return (int) Stream.iterate(0, x->x+1).limit(s.length()).filter(x->Character.isLowerCase(s.charAt(x))).count();
+	    }
+	    
 	    public static String buscMasCaracMinuscIterativo(List<String> l)
 	    {
 	        String res = "";
@@ -67,16 +72,16 @@ public class Ejercicio_uno {
 	    public static String buscMasCaracMinuscFuncional(List<String> l)
 	    {
 	        String res = "";
-	        int as = Stream.iterate(0,x->x+1).limit(l.size()).max(Comparator.comparing(x->cuentaCaracteres(l.get(x)))).get();
+	        int as = Stream.iterate(0,x->x+1).limit(l.size()).max(Comparator.comparing(x->cuentaCarcateresFuncional(l.get(x)))).get();
 	                
 	        res = l.get(as);
 	        
 	        return res;
 	    }
 	    
-	    public static String buscMasCaracMinuscRecursivoFinal(List<String> l, int i, int acu, int a, String res)
-	    {
-	        
+	    public static String buscMasCaracMinuscRecursivoFinal
+	    (List<String> l, int i, int acu, int a, String res)
+	    {	        
 	        if(i < l.size())
 	        {
 	            if(cuentaCaracteres(l.get(i)) > acu)

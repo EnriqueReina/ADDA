@@ -35,7 +35,7 @@ public class Ejercicio_dos {
 		int dif1 = l1.get(i+1) - l1.get(i);
 		int dif2 = l2.get(i+1) - l2.get(i);
 		
-		if(dif1 == 0 &&dif2 == 0|| dif1 > 0 && dif2 > 0 || dif1 < 0 && dif2 < 0)
+		if(dif1 == 0 && dif2 == 0|| dif1 > 0 && dif2 > 0 || dif1 < 0 && dif2 < 0)
 			return true;
 		else
 			return false;
