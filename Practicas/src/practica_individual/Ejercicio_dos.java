@@ -12,15 +12,14 @@ public class Ejercicio_dos {
 	{
 		List <Integer> l1 = new ArrayList<>();
 		List <Integer> l2 = new ArrayList<>();
-		
-		List <Integer> res = new ArrayList<>();
-		List <Character> res2 = new ArrayList<>();
-		
+				
 		//1,3,-3,5
 		l1.add(1);
 		l1.add(3);
 		l1.add(-3);
 		l1.add(5);
+		l1.add(100);
+		l1.add(123);
 		
 		//2,-6,7,8
 		l2.add(2);
@@ -54,26 +53,27 @@ public class Ejercicio_dos {
 		Collections.sort(l3);
 		Collections.sort(l4);
 		
-		//================================================================
-		
 		//recursivo final
 		
-		System.out.println(ordenaListaRecursivaFinal(l1,l2,0,0,false,res));
-		System.out.println(ordenaListaRecursovaFinalDos(l1,l2,0,false,false,res));
-		System.out.println(ordenaListaRecursivaFinal(l3,l4,0,0,false,res2));
-		System.out.println(ordenaListaRecursovaFinalDos(l3,l4,0,false,false,res2));
+		System.out.println("Recursivo Final: Lista 1 = " + l1 + "  Lista 2 = " + l2 );
+		System.out.println(ordenaListaRecursivaFinalReal(l1,l2));
+		System.out.println("Recursivo Final: Lista 1 = " + l3 + "  Lista 2 = " + l4 );
+		System.out.println(ordenaListaRecursivaFinalReal(l3,l4));
 		System.out.println();
 		
 		//iterativo
 		
+		System.out.println("Iterativo: Lista 1 = " + l1 + "  Lista 2 = " + l2 );
 		System.out.println(ordenaListaIterativo(l1,l2));
 		System.out.println(ordenaListaIterativoDos(l1,l2));
+		System.out.println("Iterativo: Lista 1 = " + l3 + "  Lista 2 = " + l4 );
 		System.out.println(ordenaListaIterativo(l3,l4));
 		System.out.println(ordenaListaIterativoDos(l3,l4));
 		System.out.println();
 		
 		//funcional
 		
+		System.out.println("Funcional: Lista 1 = " + l1 + "  Lista 2 = " + l2 );
 		System.out.println(ordenaListaFuncional(l1,l2));
 		System.out.println(ordenaListaFuncional(l3,l4));
 		
@@ -127,15 +127,18 @@ public class Ejercicio_dos {
 	
 	public static <T extends Comparable<T>> List<T> ordenaListaIterativoDos(List<T> l1, List<T> l2)
 	{
+		List<T> lista1 = l1;
+		List<T> lista2 = l2;
+		
 		List<T> res = new ArrayList<>();
 		
 		int i = 0;
 		int j = 0;
 		
-		while(i < l1.size() && j < l2.size())
+		while(i < lista1.size() && j < lista2.size())
 		{
-			T t1 = l1.get(i);
-			T t2 = l2.get(j);
+			T t1 = lista1.get(i);
+			T t2 = lista2.get(j);
 			
 			if(t1.compareTo(t2) > 0)
 			{
@@ -156,14 +159,14 @@ public class Ejercicio_dos {
 			}
 		}
 		
-		if(i == l1.size())
+		if(i == lista1.size())
 		{
-			res.addAll(l2.subList(j, l2.size()));
+			res.addAll(lista2.subList(j, lista2.size()));
 		}
 		
-		if(j == l2.size())
+		if(j == lista2.size())
 		{
-			res.addAll(l1.subList(i, l1.size()));
+			res.addAll(lista1.subList(i, lista1.size()));
 		}
 		
 		return res;
@@ -198,6 +201,15 @@ public class Ejercicio_dos {
 	}
 	
 	//RECURSIVO FINAL
+	
+	public static <T extends Comparable<T>> List<T> ordenaListaRecursivaFinalReal(List<T> l1, List<T> l2)
+	{
+		List <T> lista1 = l1;
+		List <T> lista2 = l2;
+		List<T> res = new ArrayList<>();
+		return ordenaListaRecursivaFinal(lista1,lista2,0,0,false,res);
+	}
+	
 	//RECURSIVO
 	public static <T extends Comparable<T>> List<T> ordenaListaRecursivaFinal
 	(List<T> l1, List<T> l2, int i, int j, Boolean a, List<T> res)
@@ -219,17 +231,4 @@ public class Ejercicio_dos {
 		return res;
 	}
 	
-	public static <T extends Comparable<T>> List<T> ordenaListaRecursovaFinalDos
-	(List<T> l1, List<T> l2, int i, Boolean a, Boolean b, List<T> res)
-	{
-		if(estaOrdenada(res))
-			return res;
-		else
-		{
-			if(res.get(i).compareTo(res.get(i+1)) > 0)
-				return ordenaListaRecursovaFinalDos(l1, l2, i+1, res.add(res.get(i+1)), res.remove(res.get(i+1)), res);
-		}
-		
-		return res;
-	}
 }
