@@ -13,7 +13,7 @@ public class Ejercicio_uno {
 	        
 	        String s1 = "Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 	        String s2 = "Hoolaaaaaaaaaaaaaaaaaa";
-	        String s3 = "olaCaracolaBertolaMakinolaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+	        String s3 = "olaCaracolaBertolaMakaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 	        String s4 = "nfesnfjksnfkjsfkjbshfvshf fkesjefjke  eksjf hkjse";
 	        String s5 = "nkesjefjke  eksjf hkjeeeeeeeee";
 	        
@@ -79,14 +79,28 @@ public class Ejercicio_uno {
 	        return res;
 	    }
 	    
+	    public static Integer cuentaCaracteresRecursivo(String s, int i, int res)
+	    {
+	    	if(i >= s.length())
+	    		return res;
+	    	else
+	    	{
+	    		if(Character.isLowerCase(s.charAt(i)))
+	    			return cuentaCaracteresRecursivo(s, i+1,res+1);
+	    		else
+	    			return cuentaCaracteresRecursivo(s, i+1,res);
+	    	}
+	    }
+	    
 	    public static String buscMasCaracMinuscRecursivoFinal
 	    (List<String> l, int i, int acu, int a, String res)
 	    {	        
 	        if(i < l.size())
 	        {
-	            if(cuentaCaracteres(l.get(i)) > acu)
+	        	int temp = cuentaCaracteresRecursivo(l.get(i),0,0);
+	            if( temp > acu)
 	            {
-	                acu = cuentaCaracteres(l.get(i));
+	                acu = temp;
 	                a = i;
 	            }
 	            
