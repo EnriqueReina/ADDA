@@ -1,5 +1,4 @@
-package practica_individual;
-import java.util.ArrayList;
+package ejericio_uno;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
@@ -7,28 +6,6 @@ import java.util.stream.Stream;
 
 public class Ejercicio_uno {
 	 
-	    public static void main(String[] args) {
-	        
-	        List<String> l = new ArrayList<>();
-	        
-	        String s1 = "Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-	        String s2 = "Hoolaaaaaaaaaaaaaaaaaa";
-	        String s3 = "olaCaracolaBertolaMakaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-	        String s4 = "nfesnfjksnfkjsfkjbshfvshf fkesjefjke  eksjf hkjse";
-	        String s5 = "nkesjefjke  eksjf hkjeeeeeeeee";
-	        
-	        l.add(s1);
-	        l.add(s2);
-	        l.add(s3);
-	        l.add(s4);
-	        l.add(s5);
-	        
-	        System.out.println(buscMasCaracMinuscIterativo(l));
-	        System.out.println(buscMasCaracMinuscFuncional(l));
-	        System.out.println(buscMasCaracMinuscRecursivoFinal(l,0,0,0,l.get(0)));
-	 
-	    }
-	    
 	    public static Integer cuentaCaracteres(String s)
 	    {
 	        int i = 0;
