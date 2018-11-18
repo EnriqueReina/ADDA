@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Ejercicio_uno_test {
+public class Test {
 	
 	 public static void main(String[] args) {
 	        

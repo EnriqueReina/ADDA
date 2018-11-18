@@ -1,62 +1,17 @@
-package ejercicio_dos;
+package Ejercicio_cuatro;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Ejercicio_dos {
+public class Ejercicio_cuatro {
 	
 	//ITERATIVO
-	public static <T extends Comparable<T>> Boolean estaOrdenada(List<T> l1)
-	{
-		int i = 0;
-		Boolean res = false;
 		
-		while(i < l1.size()-1)
-		{
-			if(l1.get(i).compareTo(l1.get(i+1)) < 0)
-			{
-				res = true;
-				i++;
-			}
-			else
-			{
-				res = false;
-				break;
-			}
-		}
-		
-		return res;
-	}
-	
-	public static <T extends Comparable<T>> List<T> ordenaListaIterativo(List<T> l1,List<T> l2)
-	{		
-		List<T> res = new ArrayList<>();
-		
-		res.addAll(l1);
-		res.addAll(l2);		
-		
-		while(!estaOrdenada(res))
-		{
-			int i = 0;
-			while(i < res.size()-1)
-			{				
-				if(res.get(i).compareTo(res.get(i+1)) > 0)
-				{
-					res.add(i,res.get(i+1));
-					res.remove(i+2);
-				}				
-				i++;
-			}		
-		}		
-		return res;
-	}
-	
-	public static <T extends Comparable<T>> List<T> ordenaListaIterativoDos(List<T> l1, List<T> l2)
+	public static <T extends Comparable<T>> List<T> ordenaListaIterativo(List<T> l1, List<T> l2)
 	{
 		List<T> lista1 = l1;
 		List<T> lista2 = l2;
-		
 		List<T> res = new ArrayList<>();
 		
 		int i = 0;
@@ -84,13 +39,11 @@ public class Ejercicio_dos {
 				res.add(t1);
 				i++;
 			}
-		}
-		
+		}		
 		if(i == lista1.size())
 		{
 			res.addAll(lista2.subList(j, lista2.size()));
-		}
-		
+		}		
 		if(j == lista2.size())
 		{
 			res.addAll(lista1.subList(i, lista1.size()));
@@ -100,33 +53,28 @@ public class Ejercicio_dos {
 	}
 	
 	//FUNCIONAL	
-	public static <T extends Comparable<T>> List<T> ordenaListaFuncional(List<T> l1,List<T> l2)
+	public static <T extends Comparable<T>> List<T> ordenaListaFuncional(List<T> l,List<T> f)
 	{
 		List<T> res = new ArrayList<>();
-		//List<T> res2 = new ArrayList<>();
+	
+		List<T> l1 = l;
+		List<T> l2 = f;
 		
-		List<T> aux1 = l1;
-		List<T> aux2 = l2;
-		
-		IntStream.iterate(0, i->!aux1.isEmpty() || !aux2.isEmpty(), i->i+0).forEach(
-				i->
-				{
-				
-					if(!aux1.isEmpty()&&aux2.stream().allMatch(j->j.compareTo(aux1.get(i))>0))
-					{
-						res.add(aux1.get(i));
-						aux1.remove(i);
-					}
-					else if(!aux2.isEmpty())
-					{
-						res.add(aux2.get(i));
-						aux2.remove(i);
-					}
-				});
-		
-		//res2 = Stream.concat(l1.stream(), l2.stream()).sorted().collect(Collectors.toList());
-		
-		//return res2;
+		IntStream.iterate(0, i->!l1.isEmpty() || !l2.isEmpty(), i->i)
+		.forEach(i->
+		{				
+			if(!l1.isEmpty()&&l2.stream().allMatch(fecha->fecha.compareTo(l1.get(i))>0))
+			{
+				res.add(l1.get(i));
+				l1.remove(i);
+			}
+			else if(!l2.isEmpty())
+			{
+				res.add(l2.get(i));
+				l2.remove(i);
+				}
+		});
+	
 		return res;		
 	}
 		
